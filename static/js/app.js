@@ -19,7 +19,7 @@ function init(data){
     var init_sample = data_samples.filter(sample => sample.id == "940")
     // Sort Data by Sample_Values
     var sorted_init = init_sample.sort( (a, b) => b.samples_values - a.samples_values)
-    //var sorted_init = sorted_init[0]
+    // Set values for graphs
     var samplevalue = sorted_init[0].sample_values
     var otuids = sorted_init[0].otu_ids
     var init_y = otuids.map(sample => `OTU ${sample}`)
@@ -83,12 +83,12 @@ function updatePlotly(){
     var init_sample = data_samples.filter(sample => sample.id == dropdownMenu)
     // Sort Data by Sample_Values
     var sorted_init = init_sample.sort( (a, b) => b.samples_values - a.samples_values)
-    //var sorted_init = sorted_init[0]
+    // Set 
     var samplevalue = sorted_init[0].sample_values
     var otuids = sorted_init[0].otu_ids
     var init_y = otuids.map(sample => `OTU ${sample}`)
     var otulabels = sorted_init[0].otu_labels
-        // HORIZONTAL BAR GRAPH
+    // HORIZONTAL BAR GRAPH
     var data1 = [{
         type: "bar",
         // Take top 10 OTU
