@@ -53,7 +53,7 @@ function init(data){
 
     //DISPLAY META
     var metadata = data.metadata.filter(sample => sample.id == "940")
-    console.log(metadata)
+
     var info = `id: ${metadata[0].id} <br>
                 ethnicity: ${metadata[0].ethnicity} <br>
                 gender: ${metadata[0].gender} <br>
@@ -62,7 +62,21 @@ function init(data){
                 bbtype: ${metadata[0].bbtype} <br>
                 wfreq: ${metadata[0].wfreq} 
                 `
+    // Add html of demographic info.
     d3.select("#sample-metadata").html(info)
+
+    // BONUS
+    var data = [{
+            domain: { x: [0, 1], y: [0, 1] },
+            value: +metadata[0].wfreq,
+            title: { text: "Speed" },
+            type: "indicator",
+            mode: "gauge+number",
+            gauge: {'axis':{'range':[0,9]}}
+        }];
+    var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+    // Plot gauge
+    Plotly.newPlot('gauge', data, layout);
 }
 
 // UPDATE PLOT
@@ -79,7 +93,7 @@ function updatePlotly(){
     // Set datasets
     var data_names = data.names;
     var data_samples = data.samples;
-    // Initial Graph 940
+    // Filter dropdown menu choice
     var init_sample = data_samples.filter(sample => sample.id == dropdownMenu)
     // Sort Data by Sample_Values
     var sorted_init = init_sample.sort( (a, b) => b.samples_values - a.samples_values)
@@ -116,7 +130,7 @@ function updatePlotly(){
 
     //DISPLAY META
     var metadata = data.metadata.filter(sample => sample.id == dropdownMenu)
-    console.log(metadata)
+    
     var info = `id: ${metadata[0].id} <br>
                 ethnicity: ${metadata[0].ethnicity} <br>
                 gender: ${metadata[0].gender} <br>
@@ -126,6 +140,19 @@ function updatePlotly(){
                 wfreq: ${metadata[0].wfreq} 
                 `
     d3.select("#sample-metadata").html(info)
+
+    // BONUS
+    var data = [{
+        domain: { x: [0, 1], y: [0, 1] },
+        value: +metadata[0].wfreq,
+        title: { text: "Speed" },
+        type: "indicator",
+        mode: "gauge+number",
+        gauge: {'axis':{'range':[0,9]}}
+    }];
+    var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+    // Plot gauge
+    Plotly.newPlot('gauge', data, layout); 
 
     });
 };
