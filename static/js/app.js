@@ -48,8 +48,11 @@ function init(data){
         },
         text: otulabels
     }];
-    // Plot Bar Graph
-    Plotly.newPlot("bubble",data2);
+    var layout2 = {
+        xaxis: {title:"OTU ID"}
+    };    
+    // Plot Bubble Graph
+    Plotly.newPlot("bubble", data2, layout2);
 
     //DISPLAY META
     var metadata = data.metadata.filter(sample => sample.id == "940")
@@ -69,7 +72,7 @@ function init(data){
     var data = [{
             domain: { x: [0, 1], y: [0, 1] },
             value: +metadata[0].wfreq,
-            title: { text: "Speed" },
+            title: { text: "Scrubs per Week" },
             type: "indicator",
             mode: "gauge+number",
             gauge: {'axis':{'range':[0,9]}}
@@ -125,12 +128,16 @@ function updatePlotly(){
         },
         text: otulabels
     }];
-    // Plot Bar Graph
-    Plotly.newPlot("bubble",data2);
+    var layout2 = {
+        xaxis: {title:"OTU ID"}
+    };
+    // Plot Bubble Graph
+    Plotly.newPlot("bubble", data2, layout2);
+
 
     //DISPLAY META
     var metadata = data.metadata.filter(sample => sample.id == dropdownMenu)
-    
+
     var info = `id: ${metadata[0].id} <br>
                 ethnicity: ${metadata[0].ethnicity} <br>
                 gender: ${metadata[0].gender} <br>
@@ -145,7 +152,7 @@ function updatePlotly(){
     var data = [{
         domain: { x: [0, 1], y: [0, 1] },
         value: +metadata[0].wfreq,
-        title: { text: "Speed" },
+        title: { text: "Scrubs per Week" },
         type: "indicator",
         mode: "gauge+number",
         gauge: {'axis':{'range':[0,9]}}
